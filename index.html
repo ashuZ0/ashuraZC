@@ -2,84 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AshuraZC – Read Manga Free</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1400&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-    }
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.7);
-      min-height: 100vh;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    #search {
-      display: block;
-      margin: 0 auto 20px auto;
-      padding: 10px;
-      font-size: 1rem;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 6px;
-      border: none;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 600px;
-      margin: auto;
-    }
-    li {
-      margin: 10px 0;
-      text-align: center;
-    }
-    a {
-      background: #ffffff22;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      color: white;
-      display: inline-block;
-    }
-    a:hover {
-      background: #ffffff44;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AshuraZC – Read Manhwa</title>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <div class="overlay">
-    <h1>🅰️ AshuraZC – Manga Portal</h1>
-    <input type="text" id="search" placeholder="Search manga...">
-    <ul id="manga-list">
-      <li><a href="manga.html?id=1">One Piece</a></li>
-      <li><a href="manga.html?id=2">Naruto</a></li>
-      <li><a href="manga.html?id=3">Bleach</a></li>
-    </ul>
-  </div>
+  <header>
+    <h1>🔥 AshuraZC – Top Manhwa</h1>
+  </header>
 
-  <script>
-    const input = document.getElementById('search');
-    const list = document.getElementById('manga-list');
-
-    input.addEventListener('input', () => {
-      const query = input.value.toLowerCase();
-      const items = list.getElementsByTagName('li');
-      for (let item of items) {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(query) ? '' : 'none';
+  <main class="grid">
+    <script src="data.js"></script>
+    <script>
+      const grid = document.querySelector(".grid");
+      for (const id in mangaData) {
+        const manga = mangaData[id];
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <a href="manga.html?id=${id}">
+            <img src="${manga.cover}" alt="${manga.title}">
+            <div class="title">${manga.title}</div>
+          </a>
+        `;
+        grid.appendChild(card);
       }
-    });
-  </script>
+    </script>
+  </main>
 </body>
 </html>
